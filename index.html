@@ -25,16 +25,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .title {
-            font-size: 5vw;
-            font-weight: bold;
-            color: black;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 4vw;
-            color: gray;
-            margin-bottom: 15px;
+        .title, .subtitle, .password {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
         .password {
             font-size: 4vw;
@@ -63,6 +56,12 @@
 
                 if (data.ip !== allowedIP) {
                     document.body.innerHTML = "<h2>접근이 차단되었습니다.</h2>";
+                } else {
+                    setTimeout(() => {
+                        document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
+                            el.style.opacity = 1;
+                        });
+                    }, 2000);
                 }
             } catch (error) {
                 console.error("IP 확인 실패:", error);
