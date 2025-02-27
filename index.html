@@ -25,7 +25,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .title, .subtitle, .password {
+        .title {
+            font-weight: bold; /* 제목 Bold 처리 */
+            font-size: 1.5em;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .subtitle, .password {
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -46,24 +52,28 @@
         .password:active {
             background: #ddd;
         }
+        .blocked {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: red;
+            cursor: default;
+        }
     </style>
     <script>
         async function checkAccess() {
-            // PC 접속 감지
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             if (!isMobile) {
-                document.body.innerHTML = "<h2>PC에서는 접근할 수 없습니다.</h2>";
+                blockAccess();
                 return;
             }
 
-            // IP 확인
             try {
                 const response = await fetch('https://api64.ipify.org?format=json');
                 const data = await response.json();
                 const allowedIPs = ["121.170.58.124", "219.255.142.8", "118.235.73.241", "49.174.239.8"];
                 
                 if (!allowedIPs.includes(data.ip)) {
-                    document.body.innerHTML = "<h2>접근이 차단되었습니다.</h2>";
+                    blockAccess();
                 } else {
                     setTimeout(() => {
                         document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
@@ -73,11 +83,17 @@
                 }
             } catch (error) {
                 console.error("IP 확인 실패:", error);
-                document.body.innerHTML = "<h2>IP 확인 중 오류가 발생했습니다.</h2>";
+                blockAccess();
             }
         }
 
+        function blockAccess() {
+            document.body.innerHTML = "<h2 class='blocked'>접근이 차단되었습니다.</h2>";
+        }
+
         function copyToClipboard(text) {
+            if (document.body.innerHTML.includes("접근이 차단되었습니다.")) return;
+
             navigator.clipboard.writeText(text).then(() => {
                 alert("비밀번호가 복사되었습니다: " + text);
             }).catch(err => {
@@ -93,7 +109,7 @@
         <div class="title">섹시유수 썰 비번 모음</div>
         <div class="subtitle">(썰 이름을 클릭하면 복사할 수 있습니다)</div>
         <div class="password" onclick="copyToClipboard('qGfTFrpv6YHmu5p')">공섹썰🌶 비번</div>
-        <div class="password" onclick="copyToClipboard('F3IdLqiXWMTh9uVlnhaDqHP3b67bEB0SZbvoPpW9JHcQqw KeCw')">
+        <div class="password" onclick="copyToClipboard('F3IdLqiXWMTh9uVlnhaDqHP3b67bEB0SZbvoPpW9JHcQqwKeCw')">
             공섹썰🌿 비번
         </div>
     </div>
