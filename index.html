@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>섹시유수 썰 비번 모음</title>
+
+    <!-- 파비콘 (브라우저 탭 아이콘) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- 홈 화면 아이콘 (iOS & Android) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/SSULicon.jpg">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/SSULicon.jpg">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/SSULicon.jpg">
+
+    <!-- PWA 지원을 위한 Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+
     <style>
         body {
             display: flex;
@@ -48,7 +60,7 @@
             width: 100%;
             text-align: center;
             word-break: break-all;
-            pointer-events: none; /* 초기에는 클릭 비활성화 */
+            pointer-events: none;
         }
         .password:active {
             background: #ddd;
@@ -81,12 +93,11 @@
                             el.style.opacity = 1;
                         });
 
-                        // 비밀번호 요소 클릭 활성화
                         setTimeout(() => {
                             document.querySelectorAll('.password').forEach(el => {
                                 el.style.pointerEvents = "auto";
                             });
-                        }, 500); // 애니메이션 이후 클릭 가능하게 설정
+                        }, 500);
 
                     }, 2000);
                 }
@@ -102,7 +113,7 @@
 
         function copyToClipboard(text) {
             const passwords = document.querySelectorAll('.password');
-            if ([...passwords].some(el => el.style.opacity === "0")) return; // 완전히 보이지 않으면 복사 불가
+            if ([...passwords].some(el => el.style.opacity === "0")) return;
 
             navigator.clipboard.writeText(text).then(() => {
                 alert("비밀번호가 복사되었습니다: " + text);
