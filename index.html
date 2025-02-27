@@ -26,7 +26,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .title {
-            font-weight: bold; /* 제목 Bold 처리 */
+            font-weight: bold;
             font-size: 1.5em;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -48,6 +48,7 @@
             width: 100%;
             text-align: center;
             word-break: break-all;
+            pointer-events: none; /* 초기에는 클릭 비활성화 */
         }
         .password:active {
             background: #ddd;
@@ -79,6 +80,14 @@
                         document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
                             el.style.opacity = 1;
                         });
+
+                        // 비밀번호 요소 클릭 활성화
+                        setTimeout(() => {
+                            document.querySelectorAll('.password').forEach(el => {
+                                el.style.pointerEvents = "auto";
+                            });
+                        }, 500); // 애니메이션 이후 클릭 가능하게 설정
+
                     }, 2000);
                 }
             } catch (error) {
@@ -92,7 +101,8 @@
         }
 
         function copyToClipboard(text) {
-            if (document.body.innerHTML.includes("접근이 차단되었습니다.")) return;
+            const passwords = document.querySelectorAll('.password');
+            if ([...passwords].some(el => el.style.opacity === "0")) return; // 완전히 보이지 않으면 복사 불가
 
             navigator.clipboard.writeText(text).then(() => {
                 alert("비밀번호가 복사되었습니다: " + text);
