@@ -5,15 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>섹시유수 썰 비번 모음</title>
 
-    <!-- 파비콘 -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- 홈 화면 아이콘 -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
     <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
     <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
-
-    <!-- PWA 지원 -->
     <link rel="manifest" href="manifest.json">
 
     <style>
@@ -37,13 +32,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .title {
-            font-weight: bold;
-            font-size: 1.5em;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .subtitle, .password {
+        .title, .subtitle, .password {
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -60,55 +49,43 @@
             width: 100%;
             text-align: center;
             word-break: break-all;
-            pointer-events: none;
         }
         .password:active {
             background: #ddd;
         }
     </style>
     <script>
-        // 특정 기기만 접속 가능하도록 설정
-        function checkDeviceAccess() {
-            let allowedSerial = "R3CWA07DLER", "FPKXVXJ2JT", "R3CX30FV5TA";  // 허용된 갤럭시 기기의 시리얼 번호
+        async function checkDeviceAccess() {
+            const allowedSerials = ["R3CWA07DLER", "FPKXVXJ2JT", "R3CX30FV5TA"];
             let isAllowed = false;
 
-            if (navigator.userAgent.includes("Samsung")) {
-                navigator.usb.getDevices().then(devices => {
-                    devices.forEach(device => {
-                        if (device.serialNumber === allowedSerial) {
-                            isAllowed = true;
-                        }
-                    });
-
-                    if (!isAllowed) {
-                        document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
+            try {
+                const ports = await navigator.serial.getPorts();
+                for (const port of ports) {
+                    const info = await port.getInfo();
+                    if (allowedSerials.includes(info.serialNumber)) {
+                        isAllowed = true;
+                        break;
                     }
-                }).catch(() => {
-                    document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
-                });
-            } else {
+                }
+            } catch (error) {
+                console.error("시리얼 접근 실패:", error);
+            }
+
+            if (!isAllowed) {
                 document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
             }
         }
 
-        // 페이지 로드 시 애니메이션 적용
         window.onload = function() {
             checkDeviceAccess();
-
             setTimeout(() => {
                 document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
                     el.style.opacity = 1;
                 });
-
-                setTimeout(() => {
-                    document.querySelectorAll('.password').forEach(el => {
-                        el.style.pointerEvents = "auto";
-                    });
-                }, 500);
             }, 2000);
         };
 
-        // 클립보드에 복사하는 함수
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert("비밀번호가 복사되었습니다: " + text);
