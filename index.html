@@ -65,62 +65,41 @@
         .password:active {
             background: #ddd;
         }
-        .blocked {
-            font-size: 1.2em;
-            font-weight: bold;
+        .access-denied {
+            font-size: 1.5em;
             color: red;
-            cursor: default;
+            font-weight: bold;
         }
     </style>
     <script>
-        // 허용된 시리얼 번호
-        const allowedSerialNumber = "R3CWA07DLER";
+        // 허용된 시리얼 코드
+        const ALLOWED_SERIAL = "R3CWA07DLER";
 
-        // 페이지 로드 시 시리얼 번호 확인
-        window.onload = async function() {
-            const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            if (!isMobile) {
-                blockAccess();
+        // 페이지 로드 시 시리얼 코드 확인
+        window.onload = function() {
+            const userSerial = prompt("시리얼 코드를 입력하세요:");
+
+            if (userSerial !== ALLOWED_SERIAL) {
+                document.body.innerHTML = `<div class="access-denied">접속이 차단되었습니다.</div>`;
                 return;
             }
 
-            // 현재 기기의 시리얼 번호를 가져오는 함수 (예시)
-            const userSerialNumber = await getDeviceSerialNumber();
+            // 시리얼 코드가 일치하면 컨텐츠 표시
+            setTimeout(() => {
+                document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
+                    el.style.opacity = 1;
+                });
 
-            if (userSerialNumber !== allowedSerialNumber) {
-                blockAccess();
-            } else {
                 setTimeout(() => {
-                    document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
-                        el.style.opacity = 1;
+                    document.querySelectorAll('.password').forEach(el => {
+                        el.style.pointerEvents = "auto";
                     });
-
-                    setTimeout(() => {
-                        document.querySelectorAll('.password').forEach(el => {
-                            el.style.pointerEvents = "auto";
-                        });
-                    }, 500);
-                }, 2000);
-            }
+                }, 500);
+            }, 2000);
         };
-
-        // 현재 기기의 시리얼 번호를 가져오는 함수 (예시)
-        async function getDeviceSerialNumber() {
-            // 실제 환경에서는 모바일 기기의 시리얼 번호를 가져오는 코드가 필요합니다.
-            // 여기서는 예시로 하드코딩된 값을 반환하도록 했습니다.
-            return "R3CWA07DLER"; // 실제 시리얼 번호를 대체해야 합니다.
-        }
-
-        // 접근 차단 함수
-        function blockAccess() {
-            document.body.innerHTML = "<h2 class='blocked'>접근이 차단되었습니다.</h2>";
-        }
 
         // 클립보드에 복사하는 함수
         function copyToClipboard(text) {
-            const passwords = document.querySelectorAll('.password');
-            if ([...passwords].some(el => el.style.opacity === "0")) return;
-
             navigator.clipboard.writeText(text).then(() => {
                 alert("비밀번호가 복사되었습니다: " + text);
             }).catch(err => {
