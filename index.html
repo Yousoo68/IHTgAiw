@@ -80,10 +80,13 @@
                 return;
             }
 
-            const deviceSerialNumber = "R3CX30FV5TA"; // 허용된 시리얼 번호
-            const userSerialNumber = getDeviceSerialNumber(); // 현재 장치의 시리얼 번호를 얻는 함수 (예시로 대체 가능)
+            // 허용된 시리얼 번호
+            const allowedSerialNumber = "R3CX30FV5TA"; // 여기에 허용할 시리얼 번호를 입력하세요.
 
-            if (userSerialNumber !== deviceSerialNumber) {
+            // 현재 기기의 시리얼 번호를 가져오는 함수 (예시로 대체 가능)
+            const userSerialNumber = await getDeviceSerialNumber();
+
+            if (userSerialNumber !== allowedSerialNumber) {
                 blockAccess();
             } else {
                 setTimeout(() => {
@@ -100,7 +103,8 @@
             }
         }
 
-        function getDeviceSerialNumber() {
+        // 현재 기기의 시리얼 번호를 가져오는 함수 (예시)
+        async function getDeviceSerialNumber() {
             // 실제 환경에서는 모바일 기기의 시리얼 번호를 가져오는 코드가 필요합니다.
             // 여기서는 예시로 하드코딩된 값을 반환하도록 했습니다.
             return "R3CX30FV5TA"; // 실제 시리얼 번호를 대체해야 합니다.
@@ -129,8 +133,8 @@
         <div class="title">섹시유수 썰 비번 모음</div>
         <div class="subtitle">(썰 이름을 클릭하면 복사할 수 있습니다)</div>
         <div class="password" onclick="copyToClipboard('TzrsPMPuP9MD3LjTyhvh2flA14wk1e1p9PgUWg2a0JuHd4NGhMOkDBxT1pEPllb68ZIntbExsn3Wt95ZHzMxcD31mtntyPGtoA47')">공섹썰🌶 비번</div>
-        <div class="password" onclick="copyToClipboard('pas6vg3KRhJTai0LARwEfRWYWBiETfBfffHdNnPHI2Ujc0TFp8WIWJMeONxHKCbl1o07jZsiFo6gJLEwX64jzVkW0dijqhsgjnqa')">
-            공섹썰🌿 비번
+        <div class="password" onclick="copyToClipboard('pas6vg3KRhJTai0LARwEfRWYWBiETfBfffHdNnPHI2Ujc0TFp8WIWJMeONxHKCbl1o07jZsiFo6gJLEwX64jzVkW0dijqhsgjnqa')">공섹썰🌿 비번</div>
+        <div class="password" onclick="copyToClipboard('Fe8tqkSPIj4myPL0wGHcOXt7OnSDlYPYF4PEv1lG778gYaZ3sJ')">담배 썰 영상 비번</div>
         </div>
     </div>
 </body>
