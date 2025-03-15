@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>섹시유수 썰 비번 모음</title>
 
-    <!-- 파비콘 (브라우저 탭 아이콘) -->
+    <!-- 파비콘 -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-    <!-- 홈 화면 아이콘 (iOS & Android) -->
+    
+    <!-- 홈 화면 아이콘 -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
     <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
     <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Yousoo68/SSUL/refs/heads/main/v6ZbGhHu2l.jpg">
 
-    <!-- PWA 지원을 위한 Web App Manifest -->
+    <!-- PWA 지원 -->
     <link rel="manifest" href="manifest.json">
 
     <style>
@@ -65,26 +65,36 @@
         .password:active {
             background: #ddd;
         }
-        .access-denied {
-            font-size: 1.5em;
-            color: red;
-            font-weight: bold;
-        }
     </style>
     <script>
-        // 허용된 시리얼 코드
-        const ALLOWED_SERIAL = "R3CWA07DLER";
+        // 특정 기기만 접속 가능하도록 설정
+        function checkDeviceAccess() {
+            let allowedSerial = "R3CWA07DLER";  // 허용된 갤럭시 기기의 시리얼 번호
+            let isAllowed = false;
 
-        // 페이지 로드 시 시리얼 코드 확인
-        window.onload = function() {
-            const userSerial = prompt("시리얼 코드를 입력하세요:");
+            if (navigator.userAgent.includes("Samsung")) {
+                navigator.usb.getDevices().then(devices => {
+                    devices.forEach(device => {
+                        if (device.serialNumber === allowedSerial) {
+                            isAllowed = true;
+                        }
+                    });
 
-            if (userSerial !== ALLOWED_SERIAL) {
-                document.body.innerHTML = `<div class="access-denied">접속이 차단되었습니다.</div>`;
-                return;
+                    if (!isAllowed) {
+                        document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
+                    }
+                }).catch(() => {
+                    document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
+                });
+            } else {
+                document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
             }
+        }
 
-            // 시리얼 코드가 일치하면 컨텐츠 표시
+        // 페이지 로드 시 애니메이션 적용
+        window.onload = function() {
+            checkDeviceAccess();
+
             setTimeout(() => {
                 document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
                     el.style.opacity = 1;
