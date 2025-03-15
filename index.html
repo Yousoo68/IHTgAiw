@@ -73,17 +73,18 @@
         }
     </style>
     <script>
-        async function checkAccess() {
+        // 허용된 시리얼 번호
+        const allowedSerialNumber = "R3CWA07DLER";
+
+        // 페이지 로드 시 시리얼 번호 확인
+        window.onload = async function() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             if (!isMobile) {
                 blockAccess();
                 return;
             }
 
-            // 허용된 시리얼 번호
-            const allowedSerialNumber = "R3CX30FV5TA"; // 여기에 허용할 시리얼 번호를 입력하세요.
-
-            // 현재 기기의 시리얼 번호를 가져오는 함수 (예시로 대체 가능)
+            // 현재 기기의 시리얼 번호를 가져오는 함수 (예시)
             const userSerialNumber = await getDeviceSerialNumber();
 
             if (userSerialNumber !== allowedSerialNumber) {
@@ -101,19 +102,21 @@
                     }, 500);
                 }, 2000);
             }
-        }
+        };
 
         // 현재 기기의 시리얼 번호를 가져오는 함수 (예시)
         async function getDeviceSerialNumber() {
             // 실제 환경에서는 모바일 기기의 시리얼 번호를 가져오는 코드가 필요합니다.
             // 여기서는 예시로 하드코딩된 값을 반환하도록 했습니다.
-            return "R3CX30FV5TA"; // 실제 시리얼 번호를 대체해야 합니다.
+            return "R3CWA07DLER"; // 실제 시리얼 번호를 대체해야 합니다.
         }
 
+        // 접근 차단 함수
         function blockAccess() {
             document.body.innerHTML = "<h2 class='blocked'>접근이 차단되었습니다.</h2>";
         }
 
+        // 클립보드에 복사하는 함수
         function copyToClipboard(text) {
             const passwords = document.querySelectorAll('.password');
             if ([...passwords].some(el => el.style.opacity === "0")) return;
@@ -124,8 +127,6 @@
                 console.error("복사 실패:", err);
             });
         }
-
-        checkAccess();
     </script>
 </head>
 <body>
@@ -135,7 +136,6 @@
         <div class="password" onclick="copyToClipboard('TzrsPMPuP9MD3LjTyhvh2flA14wk1e1p9PgUWg2a0JuHd4NGhMOkDBxT1pEPllb68ZIntbExsn3Wt95ZHzMxcD31mtntyPGtoA47')">공섹썰🌶 비번</div>
         <div class="password" onclick="copyToClipboard('pas6vg3KRhJTai0LARwEfRWYWBiETfBfffHdNnPHI2Ujc0TFp8WIWJMeONxHKCbl1o07jZsiFo6gJLEwX64jzVkW0dijqhsgjnqa')">공섹썰🌿 비번</div>
         <div class="password" onclick="copyToClipboard('Fe8tqkSPIj4myPL0wGHcOXt7OnSDlYPYF4PEv1lG778gYaZ3sJ')">담배 썰 영상 비번</div>
-        </div>
     </div>
 </body>
 </html>
