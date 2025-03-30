@@ -55,30 +55,21 @@
         }
     </style>
     <script>
-        async function checkDeviceAccess() {
-            const allowedSerials = ["R3CWA07DLER", "FPKXVXJ2JT", "R3CX30FV5TA", "DD6FCF4Q4F"];
-            let isAllowed = false;
+        // 사이트 경유 경로 체크
+        if (document.referrer !== "https://yousoo68.github.io/fjYxbSA/") {
+            window.location.href = "https://yousoo68.github.io/fjYxbSA/";
+        }
 
-            try {
-                const ports = await navigator.serial.getPorts();
-                for (const port of ports) {
-                    const info = await port.getInfo();
-                    if (allowedSerials.includes(info.serialNumber)) {
-                        isAllowed = true;
-                        break;
-                    }
-                }
-            } catch (error) {
-                console.error("시리얼 접근 실패:", error);
-            }
-
-            if (!isAllowed) {
-                document.body.innerHTML = "<h1>접근이 차단되었습니다.</h1>";
-            }
+        // 도메인 확인
+        if (window.location.hostname !== "yousoo68.github.io") {
+            // 경고 메시지 표시 후 리다이렉트
+            document.body.innerHTML = "<h1 style='text-align: center; margin-top: 50px; color: #6a5acd;'>이 페이지는 https://yousoo68.github.io/fjYxbSA/ 링크를 통해서만 접속할 수 있습니다.</h1>";
+            setTimeout(function() {
+                window.location.href = "https://yousoo68.github.io/fjYxbSA/"; // 리다이렉트 URL
+            }, 2500); // 2.5초 후 리다이렉트
         }
 
         window.onload = function() {
-            checkDeviceAccess();
             setTimeout(() => {
                 document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
                     el.style.opacity = 1;
@@ -102,6 +93,7 @@
         <div class="password" onclick="copyToClipboard('TzrsPMPuP9MD3LjTyhvh2flA14wk1e1p9PgUWg2a0JuHd4NGhMOkDBxT1pEPllb68ZIntbExsn3Wt95ZHzMxcD31mtntyPGtoA47')">공섹썰🌶 비번</div>
         <div class="password" onclick="copyToClipboard('pas6vg3KRhJTai0LARwEfRWYWBiETfBfffHdNnPHI2Ujc0TFp8WIWJMeONxHKCbl1o07jZsiFo6gJLEwX64jzVkW0dijqhsgjnqa')">공섹썰🌿 비번</div>
         <div class="password" onclick="copyToClipboard('Fe8tqkSPIj4myPL0wGHcOXt7OnSDlYPYF4PEv1lG778gYaZ3sJ')">담배 썰 영상 비번</div>
+        <div class="password" onclick="copyToClipboard('Dhdjeiei882ue')">첫경험 썰 비번</div>
     </div>
 </body>
 </html>
