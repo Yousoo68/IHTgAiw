@@ -1,100 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>섹시유수 썰 비번 모음</title>
-
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Yousoo68/photo/refs/heads/main/Secret.jpeg">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Yousoo68/photo/refs/heads/main/Secret.jpeg">
-    <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Yousoo68/photo/refs/heads/main/Secret.jpeg">
-    <link rel="manifest" href="manifest.json">
-
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 90%;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .title, .subtitle, .password {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .password {
-            font-size: 4vw;
-            font-weight: bold;
-            color: black;
-            cursor: pointer;
-            padding: 10px;
-            margin: 5px 0;
-            background: #f0f0f0;
-            border-radius: 5px;
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            word-break: break-all;
-        }
-        .password:active {
-            background: #ddd;
-        }
-    </style>
-    <script>
-        // 사이트 경유 경로 체크
-        if (document.referrer !== "https://yousoo68.github.io/fjYxbSA/") {
-            window.location.href = "https://yousoo68.github.io/fjYxbSA/";
-        }
-
-        // 도메인 확인
-        if (window.location.hostname !== "yousoo68.github.io") {
-            // 경고 메시지 표시 후 리다이렉트
-            document.body.innerHTML = "<h1 style='text-align: center; margin-top: 50px; color: #6a5acd;'>이 페이지는 https://yousoo68.github.io/fjYxbSA/ 링크를 통해서만 접속할 수 있습니다.</h1>";
-            setTimeout(function() {
-                window.location.href = "https://yousoo68.github.io/fjYxbSA/"; // 리다이렉트 URL
-            }, 2500); // 2.5초 후 리다이렉트
-        }
-
-        window.onload = function() {
-            setTimeout(() => {
-                document.querySelectorAll('.title, .subtitle, .password').forEach(el => {
-                    el.style.opacity = 1;
-                });
-            }, 2000);
-        };
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("비밀번호가 복사되었습니다: " + text);
-            }).catch(err => {
-                console.error("복사 실패:", err);
-            });
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>섹시유수의 비밀일기 플러스</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="title">섹시유수 썰 비번 모음</div>
-        <div class="subtitle">(썰 이름을 클릭하면 복사할 수 있습니다)</div>
-        <div class="password" onclick="copyToClipboard('TzrsPMPuP9MD3LjTyhvh2flA14wk1e1p9PgUWg2a0JuHd4NGhMOkDBxT1pEPllb68ZIntbExsn3Wt95ZHzMxcD31mtntyPGtoA47')">공섹썰🌶 비번</div>
-        <div class="password" onclick="copyToClipboard('pas6vg3KRhJTai0LARwEfRWYWBiETfBfffHdNnPHI2Ujc0TFp8WIWJMeONxHKCbl1o07jZsiFo6gJLEwX64jzVkW0dijqhsgjnqa')">공섹썰🌿 비번</div>
-        <div class="password" onclick="copyToClipboard('Fe8tqkSPIj4myPL0wGHcOXt7OnSDlYPYF4PEv1lG778gYaZ3sJ')">담배 썰 영상 비번</div>
-        <div class="password" onclick="copyToClipboard('Dhdjeiei882ue')">첫경험 썰 비번</div>
-        <div class="password" onclick="copyToClipboard('v5W3OZn1vTSpiw1rimJ4aE1sIiQBLBRcVRNntusGpPNkydEPlA73KURVdSNCKplslRco0a8PspdvrvZy1YpZTEwSUIdCTqkaGc4qD9W298kUKeSInVbo4S3mV6UCWp9jKhU7WEO4jKrCeACy1CIlBCJMnI1GPvex7v4qpFtFOvmWLXkSyAWRihs33sLBc47EJ7Xjn2Ne')">질싸할 뻔한 썰 비번</div>
+<body class="bg-gray-100 text-gray-800 flex flex-col items-center px-4 py-6 font-sans relative">
+
+  <!-- 상단 이미지 -->
+  <div class="w-full max-w-md flex justify-center mb-6">
+    <img src="https://github.com/Yousoo68/yxsNCGqsWUaUcFdtGHpNaFdVqDhmSKtqqexWcjygJrtEFvytFz/blob/main/Diary2.png?raw=true" 
+         alt="섹시유수 이미지" 
+         class="w-full rounded-xl shadow-md object-cover" />
+  </div>
+
+  <!-- 설명 텍스트 -->
+  <div class="max-w-md bg-white rounded-xl shadow-lg p-5 mb-6 text-center">
+    <p class="text-lg font-medium leading-relaxed">
+      섹시유수의 비밀일기 플러스는 인스타에서 연재되는 섹시유수의 비밀일기보다 <span class="font-semibold text-pink-600">분량이 더 많고</span>,<br/>
+      더 <span class="font-semibold text-red-600">수위가 높은 주제</span>의 일기를 올립니다.<br/><br/>
+      영화 관련 용어인 <span class="italic">감독판</span>을 생각하면 쉽다.
+    </p>
+  </div>
+
+  <!-- 버튼들 -->
+  <div class="w-full max-w-md space-y-4">
+    <button onclick="showDiary('hotangje')" class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full text-lg font-semibold shadow-md hover:brightness-110 transition">
+      호탕제 일기
+    </button>
+    <button onclick="showDiary('daybefore')" class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full text-lg font-semibold shadow-md hover:brightness-110 transition">
+      방학식 하루 전 일기
+    </button>
+    <button onclick="showDiary('dayof')" class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full text-lg font-semibold shadow-md hover:brightness-110 transition">
+      방학식 당일 일기
+    </button>
+  </div>
+
+  <!-- 다이어리 뷰어 -->
+  <div id="diaryViewer" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex-col overflow-y-auto">
+    <button onclick="closeViewer()" class="text-white text-2xl font-bold p-4 text-right w-full">✕</button>
+    <div id="diaryImages" class="flex flex-col items-center space-y-2 pb-10">
+      <!-- 이미지들이 JS로 들어감 -->
     </div>
+  </div>
+
+  <script>
+    const diaryData = {
+      hotangje: [
+        'https://i.ibb.co/8DBmR8Tj/Ot-ISp-I1-QB5-1.jpg',
+        'https://i.ibb.co/fz5B8SD6/Ot-ISp-I1-QB5-2.jpg'
+      ],
+      daybefore: [
+        'https://i.ibb.co/qM7vxMB1/r-Ann5-ZYh-Qz.jpg'
+      ],
+      dayof: [
+        'https://i.ibb.co/rGk2Yw1k/ma-Zf7-Z2-Jn-E.jpg'
+      ]
+    };
+
+    function showDiary(type) {
+      const viewer = document.getElementById('diaryViewer');
+      const container = document.getElementById('diaryImages');
+      container.innerHTML = ''; // 초기화
+
+      diaryData[type].forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.className = 'w-full object-cover';
+        container.appendChild(img);
+      });
+
+      viewer.classList.remove('hidden');
+    }
+
+    function closeViewer() {
+      document.getElementById('diaryViewer').classList.add('hidden');
+    }
+  </script>
+
 </body>
 </html>
