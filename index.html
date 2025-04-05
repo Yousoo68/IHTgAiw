@@ -8,6 +8,21 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col items-center px-4 py-6 font-sans relative">
 
+  <script>
+    // 사이트 경유 경로 체크
+    if (document.referrer !== "https://yousoo68.github.io/fjYxbSA/") {
+        window.location.href = "https://yousoo68.github.io/fjYxbSA/";
+    }
+
+    // 도메인 확인
+    if (window.location.hostname !== "yousoo68.github.io") {
+        document.body.innerHTML = "<h1 style='text-align: center; margin-top: 50px; color: #7c3aed;'>이 페이지는 https://yousoo68.github.io/fjYxbSA/ 링크를 통해서만 접속할 수 있습니다.</h1>";
+        setTimeout(function () {
+            window.location.href = "https://yousoo68.github.io/fjYxbSA/";
+        }, 5000);
+    }
+  </script>
+
   <!-- 상단 이미지 -->
   <div class="w-full max-w-md flex justify-center mb-6">
     <img src="https://github.com/Yousoo68/yxsNCGqsWUaUcFdtGHpNaFdVqDhmSKtqqexWcjygJrtEFvytFz/blob/main/Diary2.png?raw=true" 
@@ -41,14 +56,14 @@
   <div id="diaryViewer" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex-col overflow-y-auto">
     <button onclick="closeViewer()" class="text-white text-2xl font-bold p-4 text-right w-full">✕</button>
     <div id="diaryImages" class="flex flex-col items-center space-y-2 pb-10">
-      <!-- 이미지들이 JS로 들어감 -->
+      <!-- 이미지가 JS로 삽입됨 -->
     </div>
   </div>
 
   <script>
     const diaryData = {
       hotangje: [
-        'https://i.ibb.co/8DBmR8Tj/Ot-ISp-I1-QB5-1.jpg',
+        'https://i.ibb.co/jv25T3Xp/Ot-ISp-I1-QB5-1.jpg',
         'https://i.ibb.co/fz5B8SD6/Ot-ISp-I1-QB5-2.jpg'
       ],
       daybefore: [
@@ -62,7 +77,7 @@
     function showDiary(type) {
       const viewer = document.getElementById('diaryViewer');
       const container = document.getElementById('diaryImages');
-      container.innerHTML = ''; // 초기화
+      container.innerHTML = ''; // 기존 이미지 제거
 
       diaryData[type].forEach(url => {
         const img = document.createElement('img');
